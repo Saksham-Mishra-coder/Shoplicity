@@ -15,6 +15,7 @@ function HeroSection() {
         <div className="text-center text-white px-4 mt-[7rem]">
           <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
             Discover Your Next Adventure!
+            hello dear
           </h1>
           <p className="text-sm sm:text-lg md:text-xl font-medium">
             Shop Our Latest Arrival & Unleash Your Style
