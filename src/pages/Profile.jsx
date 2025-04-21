@@ -20,7 +20,7 @@ const Card = () => {
             <Link to="/login">Login</Link>
           </button>
           <button className="bg-[#cc6c5c] text-white  px-4 py-1 hover:scale-75 transtion duration-500">
-            <Link to="/singup">Singup</Link>
+            <Link to="/signup">Signup</Link>
           </button>
         </div>
       </div>

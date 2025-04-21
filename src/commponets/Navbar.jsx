@@ -2,6 +2,7 @@ import { FiUser, FiMenu, FiX, FiShoppingCart } from "react-icons/fi";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Profile from "../pages/Profile";
 
 const NavbarWrapper = styled.nav`
   display: flex;
@@ -55,7 +56,6 @@ const MenuIcon = styled.div`
   }
 `;
 
-// ✅ FIXED HERE: removed position absolute
 const MobileMenu = styled.ul`
   background: #cc6c5c;
   list-style: none;
@@ -79,6 +79,23 @@ const MobileMenu = styled.ul`
     }
   }
 `;
+const ProfileWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  &:hover .hover-card,
+  .hover-card:hover {
+    display: block;
+  }
+`;
+
+const HoverCard = styled.div`
+  display: none;
+  position: absolute;
+  top: 25px;
+  right: 0;
+  z-index: 50;
+`;
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -89,18 +106,37 @@ const Navbar = () => {
         <Logo>Shoplicity</Logo>
 
         <NavLinks>
-          <li><StyledLink to="/">Home</StyledLink></li>
-          <li><StyledLink to="/products">Products</StyledLink></li>
-          <li><StyledLink to="/mens">Mens</StyledLink></li>
-          <li><StyledLink to="/kids">Kids</StyledLink></li>
+          <li>
+            <StyledLink to="/">Home</StyledLink>
+          </li>
+          <li>
+            <StyledLink to="/products">Products</StyledLink>
+          </li>
+          <li>
+            <StyledLink to="/mens">Mens</StyledLink>
+          </li>
+          <li>
+            <StyledLink to="/kids">Kids</StyledLink>
+          </li>
         </NavLinks>
 
         <RightSection>
-          <Link to="/cart"><FiShoppingCart size={22} color="#333" /></Link>
-          <StyledLink to="/profile" style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-            <FiUser size={25} />
-            Profile
-          </StyledLink>
+          <Link to="/cart">
+            <FiShoppingCart size={22} color="#333" />
+          </Link>
+
+          <ProfileWrapper>
+            <FiUser size={25} color="#333" />
+            <span
+              style={{ marginLeft: "5px", color: "#333", fontWeight: "500" }}
+            >
+              Profile
+            </span>
+            <HoverCard className="hover-card transition-all duration-200">
+              <Profile />
+            </HoverCard>
+          </ProfileWrapper>
+
           <MenuIcon onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <FiX /> : <FiMenu />}
           </MenuIcon>
@@ -109,11 +145,18 @@ const Navbar = () => {
 
       {menuOpen && (
         <MobileMenu>
-          <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
-          <Link to="/products" onClick={() => setMenuOpen(false)}>Products</Link>
-          <Link to="/mens" onClick={() => setMenuOpen(false)}>Mens</Link>
-          <Link to="/kids" onClick={() => setMenuOpen(false)}>Kids</Link>
-         
+          <Link to="/" onClick={() => setMenuOpen(false)}>
+            Home
+          </Link>
+          <Link to="/products" onClick={() => setMenuOpen(false)}>
+            Products
+          </Link>
+          <Link to="/mens" onClick={() => setMenuOpen(false)}>
+            Mens
+          </Link>
+          <Link to="/kids" onClick={() => setMenuOpen(false)}>
+            Kids
+          </Link>
         </MobileMenu>
       )}
     </>
